@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=$(dirname $0)
+rsync  -avzi --delete --no-owner --no-group $DIR/../dist/ ktt_atlassian:/home/atlassian/crowdRegister/dist/

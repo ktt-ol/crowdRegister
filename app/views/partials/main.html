@@ -1,0 +1,76 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="content">
+
+    <div class="modal register-waiting-dialog" ng-if="form.waiting">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        </div>
+                    </div>
+                    <div class="center-block text-center">Bitte warten...</div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div ng-if="!page.registrationSuccess">
+        <h1>Neu registrieren <small>[1/2]</small></h1>
+
+        <p class="lead">Du kannst dich hier für einen KtT Account registrieren. Bitte fülle dazu das folgende Formular aus und klicke auf "Absenden".</p>
+        <p>Wenn du nicht weiter kommst oder Fehler auftreten, dann kannst du eine E-Mail an <em>hc@kreativitaet-trifft-technik.de</em> schreiben.</p>
+
+        <div class="alert alert-warning" ng-if="error.misc || error.noPwMatch || error.userExists">
+            <div ng-if="error.misc">
+                Es ist ein Fehler bei der Registrierung aufgetreten.
+                <pre>{{error.miscDetail}}</pre>
+            </div>
+            <div ng-if="error.noPwMatch"><em>Password</em> und <em>Password wiederholen</em> stimmen nicht überein.</div>
+            <div ng-if="error.userExists"><strong>Der <em>Benutzername</em> existiert bereits.</strong>
+                <ul>
+                    <li>Wenn du schon registriert bist und dein Passwort vergessen hast, dann <a
+                            href="//id.kreativitaet-trifft-technik.de/openidserver/forgottenlogindetails!default.action">klicke hier</a>.
+                    </li>
+                    <li>Hast du dich erst vor kurzem hier registriertt, muss der Account erst noch von einem Admin freigeschaltet haben.</li>
+                    <li>Möglicherweise ist aber auch dein gewünschter Benutzername schon vergeben.</li>
+                </ul>
+            </div>
+        </div>
+        <form role="form" name="submitForm" ng-submit="submit()">
+            <form-entry type="mail" name="mail" ng-model="form.email" disabled="form.waiting" invalid="invalid.mail"
+                        label="E-Mail Adresse"></form-entry>
+            <form-entry type="text" name="login" ng-model="form.login" disabled="form.waiting" invalid="error.userExists"
+                        label="Benutzername"></form-entry>
+            <form-entry type="password" name="password" ng-model="form.password" disabled="form.waiting" invalid="error.noPwMatch"
+                        label="Passwort"></form-entry>
+            <form-entry type="password" name="passwordRepeat" ng-model="form.passwordRepeat" disabled="form.waiting" invalid="error.noPwMatch"
+                        label="Passwort wiederholen"></form-entry>
+            <form-entry type="text" name="first" ng-model="form.firstName" disabled="form.waiting" invalid="invalid.firstName"
+                        label="Vorname"></form-entry>
+            <form-entry type="text" name="last" ng-model="form.lastName" disabled="form.waiting" invalid="invalid.lastName"
+                        label="Nachname"></form-entry>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary" ng-disabled="form.waiting">Absenden</button>
+            </div>
+        </form>
+
+    </div>
+
+    <div ng-if="page.registrationSuccess">
+        <h1>Neu registrieren <small>[2/2]</small></h1>
+
+        <p class="alert alert-success">Erfolgreich registriert! <i class="glyphicon glyphicon-ok"></i></p>
+
+        <p>Dein KtT Account wurde erfolgreich angelgt, muss allerdings noch freigeschaltet werden. Ein Admin wurde dafür benachrichtigt.</p>
+
+        <p>Sobald du freigeschaltet bist, bekommst du eine E-Mail.</p>
+    </div>
+
+</div>
+
+<div ng-include="'partials/footer'"></div>

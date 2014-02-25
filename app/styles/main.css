@@ -1,0 +1,81 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+#mainframe-logo {
+  height: 90px;
+}
+#ktt-logo {
+  height: 90px;
+  float: right;
+}
+#logo-text-only {
+  display: none;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 10px;
+  margin-top: 20px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.content {
+  min-height: 300px;
+}
+
+.register-waiting-dialog {
+  display: block;
+  top: 300px;
+  position: absolute;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  #mainframe-logo,
+  #ktt-logo {
+    display: none;
+  }
+  #logo-text-only {
+    display: block;
+  }
+}

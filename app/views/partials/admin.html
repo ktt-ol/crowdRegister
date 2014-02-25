@@ -1,0 +1,38 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="content">
+    <div class="alert alert-danger" ng-if="error.credentials || error.misc">
+        <div ng-if="error.credentials">Invalid credentials?!</div>
+        <div ng-if="error.misc">
+            <strong>Unexpected error!</strong>
+            <pre>{{error.miscDetail}}</pre>
+        </div>
+    </div>
+
+    <p ng-if="userList.length">The following users are waiting for activation:</p>
+    <ul class="list-group">
+        <li ng-repeat="u in userList" class="list-group-item" ng-class="{ 'list-group-item-success': u.activated }">
+            <div class="row">
+                <div class="col-xs-1">
+                    <i class="glyphicon h4" ng-class="{ 'glyphicon-unchecked' : !u.activated, 'glyphicon-check' : u.activated } "></i>
+                </div>
+                <div class="col-xs-4">
+                    <h4>{{u.login}}</h4>
+                </div>
+                <div class="col-xs-7 text-right">
+                    <button class="btn btn-default" ng-click="info(u)" ng-disabled="u.email">Info</button>
+                    <button class="btn btn-primary" ng-click="activate(u, true)" ng-disabled="u.activated || active.activate">Activate as Member
+                    </button>
+                    <button class="btn btn-primary" ng-click="activate(u, false)" ng-disabled="u.activated || active.activate">Activate as User
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <p class="col-xs-offset-1" ng-if="u.email">{{u.firstName}} {{u.lastName}} ({{u.email}})</p>
+            </div>
+        </li>
+    </ul>
+    <div ng-if="!userList.length">Nothing to do!</div>
+</div>
+
+<div ng-include="'partials/footer'"></div>
