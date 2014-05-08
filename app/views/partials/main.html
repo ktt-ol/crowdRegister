@@ -25,11 +25,12 @@
         <p class="lead">Du kannst dich hier für einen KtT Account registrieren. Bitte fülle dazu das folgende Formular aus und klicke auf "Absenden".</p>
         <p>Wenn du nicht weiter kommst oder Fehler auftreten, dann kannst du eine E-Mail an <em>hc@kreativitaet-trifft-technik.de</em> schreiben.</p>
 
-        <div class="alert alert-warning" ng-if="error.misc || error.noPwMatch || error.userExists">
+        <div class="alert alert-warning" ng-if="error">
             <div ng-if="error.misc">
                 Es ist ein Fehler bei der Registrierung aufgetreten.
                 <pre>{{error.miscDetail}}</pre>
             </div>
+            <div ng-if="error.email">Die E-Mail Adresse ist ungültig. Bitte prüfe sie auf mögliche Tippfehler.</div>
             <div ng-if="error.noPwMatch"><em>Password</em> und <em>Password wiederholen</em> stimmen nicht überein.</div>
             <div ng-if="error.userExists"><strong>Der <em>Benutzername</em> existiert bereits.</strong>
                 <ul>
@@ -42,7 +43,7 @@
             </div>
         </div>
         <form role="form" name="submitForm" ng-submit="submit()">
-            <form-entry type="mail" name="mail" ng-model="form.email" disabled="form.waiting" invalid="invalid.mail"
+            <form-entry type="mail" name="mail" ng-model="form.email" disabled="form.waiting" invalid="error.email"
                         label="E-Mail Adresse"></form-entry>
             <form-entry type="text" name="login" ng-model="form.login" disabled="form.waiting" invalid="error.userExists"
                         label="Benutzername"></form-entry>
